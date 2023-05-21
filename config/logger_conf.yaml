@@ -1,0 +1,38 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  default:
+    # formatで使用可能な変数については以下を参照
+    # https://docs.python.org/ja/3/library/logging.html#logrecord-attributes
+    format: '%(asctime)s [%(levelname)s] %(filename)s::%(funcName)s lines:%(lineno)d - %(message)s'
+handlers:
+  consoleHandler:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: default
+    stream: ext://sys.stdout
+  applicationHandler:
+    class: logging.handlers.TimedRotatingFileHandler
+    # ローテーションのタイミングは午前0時
+    when: MIDNIGHT
+    level: INFO
+    formatter: default
+    # ログ出力パス
+    filename: ./log/application.log
+    # 過去30日分保存する
+    backupCount: 30
+    encoding: "utf8"
+loggers:
+  console:
+    level: DEBUG
+    handlers: [consoleHandler]
+    # root loggerへ伝播させる
+    propagate: no
+  application:
+    level: DEBUG
+    handlers: [consoleHandler, applicationHandler]
+    # root loggerへ伝播させる
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [consoleHandler, applicationHandler]
