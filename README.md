@@ -2,15 +2,16 @@
 pythonのロガーについての試行錯誤
 
 ## ロガー設定ファイル
-- yaml
+状況に応じて、yaml/jsonのいずれかを使用する。
+- [yaml](./config/logger_conf.yaml)
+ 
+  ファイルのloadに`PyYaml`が必要
+  ```shell
+  $ pip install PyYaml
+  ```
+- [json](./config/logger_conf.json)
 
-    ファイルのloadに`PyYaml`が必要
-    ```shell
-    $ pip install PyYaml
-    ```
-- json
-
-    デフォルトでload可能
+  デフォルトでload可能
 
 ## loggerについて
 
