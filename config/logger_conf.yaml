@@ -23,11 +23,13 @@ handlers:
     backupCount: 30
     encoding: "utf8"
 loggers:
+  # getLogger("console")
   console:
     level: DEBUG
     handlers: [consoleHandler]
     # root loggerへ伝播させる
     propagate: no
+  # getLogger("application")
   application:
     level: DEBUG
     handlers: [consoleHandler, applicationHandler]
@@ -35,4 +37,5 @@ loggers:
     propagate: no
 root:
   level: DEBUG
+  # ルートロガーを標準出力と、ファイル出力に設定する
   handlers: [consoleHandler, applicationHandler]
